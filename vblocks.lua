@@ -1,6 +1,6 @@
 local B = require"mini.class"("vblocks")
 local floor = math.floor
-local m_min,m_max = math.min,math.max
+local math_min,math_max = math.min,math.max
 
 function B:init(blksize)
 	assert(blksize)
@@ -27,7 +27,7 @@ function B:__ipairs()
 end
 
 local function between(min,v,max)
-	return m_min(max, m_max(min,v))
+	return math_min(max, math_max(min,v))
 end
 assert( between(0,1,2)==1 )
 assert( between(0,-1,2)==0 )
@@ -109,8 +109,8 @@ function B:getblockrange(first_block, last_block, first_pos, last_pos)
 		t_ins(r, blocks[n])
 	end
 	local b = blocks[last_block]
-	if last_pos then
-		b=b:sub(1, last_pos+1)
+	if b and last_pos then
+		b=b:sub(1, last_pos)
 	end
 --print("endloop")
 --print("-last:", last_block)

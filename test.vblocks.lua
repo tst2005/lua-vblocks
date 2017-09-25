@@ -21,8 +21,9 @@ assert( b:seek("set", 0) == 0)
 assert( b:seek("cur", 0) == 0)
 assert( b:seek("set", 3) == 3)
 assert( b:seek("cur", 3) == 6)
-print( b:seek("end"))
-print( c.seek("cur"))
+
+assert( b:seek("end") == 9)
+assert( c.seek("cur") == 9)
 
 --print("size", b:size() )
 local lastpos = b:size()
@@ -30,7 +31,6 @@ local lastpos = b:size()
 --print("get(all)", 0, lastpos, table.concat( b:getdata(0, lastpos)))
 --print("get(+1,-1)", 1, lastpos-1, table.concat( b:getdata(1, lastpos-1)))
 assert(table.concat( b:getdata(0, lastpos)) == "abc123456" )
-assert( table.concat( b:getdata(1, lastpos-1))=="bc12345" )
-
+assert( table.concat( b:getdata(1, lastpos-1)) == "bc12345" )
 assert( tostring(b:torealdata({ "xxx", nil, "z", n=3}, "_"))=="xxx___z__")
 
